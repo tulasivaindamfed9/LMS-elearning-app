@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
 import { useClerk, useUser, UserButton } from "@clerk/clerk-react";
+import { AppContext } from "../../Context/AppContext";
 
 const Navbar = () => {
+
+  const {navigate,isEducator}=useContext(AppContext)
+
   const isCouselistPage = location.pathname.includes("/coursesList"); //for courseList page the background color should be white, otherwise false
   // to open signin form we use useClerk
   const { openSignIn } = useClerk();
@@ -16,6 +20,8 @@ const Navbar = () => {
       }`}
     >
       <img
+      // using onclick fun because whenever we click on logo , we should redirect to home page
+        onClick={()=>navigate('/')}
         src={assets.logo}
         alt="logo"
         className="w-28 lg:w-32 cursor-pointer"
@@ -26,7 +32,7 @@ const Navbar = () => {
           {/* if the user is login show become educator and my enrollments buttons */}
           {user && (
             <>
-              <button>Become Educator</button>|{" "}
+              <button onClick={()=>{navigate("/educator")}}>{isEducator ? "Educator Dashboard" : "Become Educator"}</button>|{" "}
               <Link to="/myEnrollments">My Enrollments</Link>
             </>
           )}
@@ -51,7 +57,7 @@ const Navbar = () => {
         <div className="flex items-center gap-1 sm:gap-2 max-sm:text-xs">
           {user && (
             <>
-              <button>Become Educator</button>|{" "}
+               <button onClick={()=>{navigate("/educator")}}>{isEducator ? "Educator Dashboard" : "Become Educator"}</button>|{" "}
               <Link to="/myEnrollments">My Enrollments</Link>
             </>
           )}
