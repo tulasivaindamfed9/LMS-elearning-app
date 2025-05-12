@@ -19,13 +19,23 @@ const Navbar = () => {
         isCouselistPage ? "bg-white" : "bg-cyan-100/70"
       }`}
     >
-      <img
+
+<img
+  onClick={() => navigate('/')}
+  src={assets.study_online_logo}
+  alt="study_online_logo"
+  className="w-40 lg:w-48 cursor-pointer p-1 rounded-md hover:opacity-90 transition duration-300 bg-blue-600 rounded"
+ 
+/>
+
+
+      {/* <img
       // using onclick fun because whenever we click on logo , we should redirect to home page
         onClick={()=>navigate('/')}
-        src={assets.logo}
+        src={assets.study_online_logo}
         alt="logo"
         className="w-28 lg:w-32 cursor-pointer"
-      />
+      /> */}
       {/* div for laptop or desktop view */}
       <div className="hidden md:flex items-center gap-5 text-gray-500">
         <div className="flex items-center gap-5">

@@ -16,6 +16,9 @@ export const AppContextProvider=(props)=>{
 
   // we will save all dummy courses in assets.jsx in allCourses state in the AppContext.jsx
   const [allCourses, setAllCourses]=useState([])
+
+  // state var to store the enrolled courses for my enrollments page
+  const [enrolledCourses,setEnrolledCourses]=useState([])
   
   // Fetch all courses
   const fetchAllCourses = async() =>{
@@ -35,10 +38,7 @@ export const AppContextProvider=(props)=>{
     return totalRating / course.courseRatings.length
   }
 
-  useEffect(()=>{
-    
-     fetchAllCourses();
-  },[])
+ 
 
 
 // function to calculate course chapter time
@@ -68,6 +68,17 @@ const calculateNoOfLectures =(course) =>{
   return totalLectures;
 }
 
+// fetch user enrolled courses
+const fetchUserEnrolledCourses = async () => {
+  setEnrolledCourses(dummyCourses)
+}
+
+ useEffect(()=>{
+    
+     fetchAllCourses();
+     fetchUserEnrolledCourses()
+  },[])
+
     const value={
       //  to access the currency varibale in our entire app we mentio it in value
       currency,
@@ -78,7 +89,9 @@ const calculateNoOfLectures =(course) =>{
       isEducator, setIsEducator,
       calculateChapterTime,
       calculateCourseDuration,
-      calculateNoOfLectures
+      calculateNoOfLectures,
+      enrolledCourses,
+      fetchUserEnrolledCourses
     }
   return(
     <AppContext.Provider value={value}>

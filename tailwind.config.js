@@ -23,6 +23,14 @@ export default {
     // custom class for course details color
     spacing: {
     'section-height' : '500px'
+    },
+
+    // custom class for courseDatails.js file right side card style
+    maxWidth: {
+      'course-card' : '424px'
+    },
+    boxShadow: {
+      'custom-card': '0px 4px 15px 2px rgba(0,0,0,0.1)'
     }
     },
   },
